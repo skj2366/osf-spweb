@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="addr">
+	<select id="selectAddrList" resultType="map">
+		select * from address
+		<where>
+		<if test="adNum != null">
+		and ad_num &lt; = #{adNum}
+		</if>
+		<if test="adSido != null">
+			and ad_sido = #{adSido}
+		</if>
+		</where>
+	</select>
+	<!-- 우리가 평소 프리페어드로 ? 선언했었는데
+	문제는 되지않는다 but 다이나믹하게 쿼리문을 쓸때가 문제가 되는데 ..
+	 ? 대신 #{adNum} 이런식으로 쓴다 
+	 이러면 키값이 adNum인 애를 찾으면 된다.
+	 간단합니다.
+	 -->
+</mapper>
